@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>React Demo</title>
+
+    <style media="screen" src="https://unpkg.com/mocha@3.4.2/mocha.css"></style>
+
+    <script src="https://unpkg.com/babel-standalone@latest/babel.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/chai@4.0.2/chai.js"></script>
+    <script src="https://unpkg.com/mocha@3.4.2/mocha.js"></script>
+
+    <style media="screen">
+      .messageBox {
+        border: 1px solid;
+        background-color: #eebbbb;
+        margin: 1em;
+        padding: 2em;
+      }
+      .error{
+        border-color: red;
+        background-color: #eebbbb;
+      }
+      .success{
+        border-color: blue;
+        background-color: #bbeebb;
+      }
+      .hidden{
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <main id="content"></main>
+    <div id="mocha"></div>
+
+  </body>
+
+  <script type="text/babel" data-presets="react">
+    class NameInput extends React.Component {
+      constructor(props) {
+        super(props);
+        this.state ={
+          message:{
+            type: undefined,
+            body: undefined
+          }
+        }
+        //Binding events.
+        this.buttonClicked = this.buttonClicked.bind(this);
+
+      }
+      buttonClicked(evt){
+        let name = this.refs.nameInput.value;
+        this.setState({
+          message: {
+            type: name ? "success" : "error",
+            body: name ? "Welcome to React, "+name : "You must enter a name."
+          }
+        });
+
+      }
+      render() {
+        let msg = this.state.message;
+        return (
+          <div>
+            <label>Name: <input ref="nameInput" type="text" /></label>
+            <button id="inputButton" onClick={this.buttonClicked}>Click Me</button>
+            <MessageBox type={msg.type} message={msg.body}/>
+          </div>
+        )
+      }
+   }
+
+   class MessageBox extends React.Component {
+     render() {
+       return (
+         <div class={"messageBox "+ (this.props.type || "hidden")}>
+           {this.props.message}
+         </div>
+       )
+     }
+  }
+
+  ReactDOM.render(<NameInput/>,document.getElementById('content'));
+  </script>
+  <script type="text/babel" data-presets="react">
+    const assert = chai.assert;
+    mocha.ui("bdd");
+    mocha.reporter("html");
+    describe("Example Tests", ()=>{
+      it("Proved that math works.", () => {
+        assert.equal(5,3+2,"Math works.");
+        assert.notEqual(6,3+2,"Math works.");
+      });
+      it("Found our Component", () => {
+        assert.isDefined(MessageBox, "Our messageBox is defined.");
+        });
+      it("Lets test a function.", () => {
+        let myName = "Ankit";
+        const greet = (name) => "Hello "+ name + "!";
+        assert.include(greet(myName),myName,"Greeting includes name.");
+      });
+    });
+
+    describe("Document Tests..", () => {
+      it("Render an empty box",()=>{
+        let msgbox = document.querySelector(".messageBox");
+        assert.isDefined(msgbox, "MessageBox is in the document.");
+        assert.include(msgbox.classList.value,"hidden","MessageBox is hidden.");
+        assert.equal(msgbox.innerText,"","MessageBox is empty.");
+      });
+      it("Render a error when name is empty",() => {
+        let msgbox = document.querySelector(".messageBox");
+        let button = document.querySelector("#inputButton");
+        button.click();
+        assert.include(msgbox.classList.value,"error", "MessageBox is type of error");
+
+      });
+    });
+    mocha.run()
+  </script>
+
+</html>

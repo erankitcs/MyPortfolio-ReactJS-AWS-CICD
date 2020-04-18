@@ -1,0 +1,32 @@
+{
+  "name": "myportfolio-reactjs-aws-cicd",
+  "version": "1.0.0",
+  "description": "My Portfolio",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "webpack": "webpack",
+    "webpack-watch": "webpack --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/erankitcs/MyPortfolio-ReactJS-AWS-CICD.git"
+  },
+  "author": "Ankit K Singh (er.ankit.cs@gmail.com)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/erankitcs/MyPortfolio-ReactJS-AWS-CICD/issues"
+  },
+  "homepage": "https://github.com/erankitcs/MyPortfolio-ReactJS-AWS-CICD#readme",
+  "dependencies": {
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.4",
+    "babel-preset-react": "^6.24.1",
+    "webpack": "^4.2.0",
+    "webpack-cli": "^2.0.13"
+  }
+}
