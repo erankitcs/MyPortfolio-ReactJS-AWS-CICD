@@ -1,0 +1,12 @@
+version: 0.1
+
+phases:
+  build:
+    command:
+      - npm install
+      - npm run webpack
+artifacts:
+  files:
+    - index.html
+    - images/*
+    - dist/bundle.js
