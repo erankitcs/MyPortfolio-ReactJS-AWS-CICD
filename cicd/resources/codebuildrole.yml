@@ -1,0 +1,14 @@
+Type: AWS::IAM::Role
+Properties:
+  RoleName: ankitportfoliobuildrole
+  Description: "Used in CodeBuild project. Created by CloudFormation"
+  AssumeRolePolicyDocument:
+    Statement:
+      - Action:
+          - sts:AssumeRole
+        Effect: Allow
+        Principal:
+          Service:
+            - codebuild.amazonaws.com
+    Version: '2012-10-17'
+  Path: /service-role/

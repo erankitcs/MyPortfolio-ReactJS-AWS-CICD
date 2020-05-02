@@ -20,4 +20,4 @@ with zipfile.ZipFile(portfilo_zip) as myzip:
         obj = myzip.open(nm)
         portfilo_bucket.upload_fileobj(obj, nm,
             ExtraArgs={'ContentType':mimetypes.guess_type(nm)[0]})
-        portfilo_bucket.Objecgt(nm).Acl().put(ACL='public-read')
+        portfilo_bucket.Object(nm).Acl().put(ACL='public-read')

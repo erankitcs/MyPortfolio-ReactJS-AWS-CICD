@@ -1,2 +1,5 @@
 dist
 node_modules
+cicd/.serverless/
+config.dev.yml
+codepipeline-github-events-yaml.zip

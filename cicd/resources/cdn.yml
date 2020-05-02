@@ -1,0 +1,29 @@
+Type: "AWS::CloudFront::Distribution"
+Properties:
+  DistributionConfig:
+    ViewerCertificate:
+      AcmCertificateArn: {Ref: SSLCert}
+      SslSupportMethod: sni-only
+    Enabled: true
+    HttpVersion: http2
+    Aliases:
+      - ${self:custom.domainName}
+    DefaultRootObject: index.html
+    Origins:
+      - DomainName: {"Fn::Join": ["", [ "${self:custom.bucketName}", ".", {"Fn::FindInMap": [RegionMap, {Ref: "AWS::Region"}, websiteendpoint]}]]}
+        Id: S3Origin
+        CustomOriginConfig:
+          HTTPPort: 80
+          HTTPSPort: 443
+          OriginProtocolPolicy: http-only
+    DefaultCacheBehavior:
+      ViewerProtocolPolicy: allow-all
+      TargetOriginId: S3Origin
+      AllowedMethods:
+        - GET
+        - HEAD
+      Compress: true
+      DefaultTTL: 30
+      MinTTL: 10
+      ForwardedValues:
+        QueryString: true

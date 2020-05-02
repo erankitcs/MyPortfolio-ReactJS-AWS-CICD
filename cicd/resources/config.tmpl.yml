@@ -1,0 +1,8 @@
+PortfolioConfig:
+  domainName: ""
+  rootDomainName: ""
+  bucketName: ""
+  Owner: ""
+  OAuthToken:  ""
+  Repo: ""
+  Branch: ""

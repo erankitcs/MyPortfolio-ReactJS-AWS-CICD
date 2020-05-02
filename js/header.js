@@ -15,6 +15,7 @@ const useStyle = makeStyles((theme) => ({
   },
   headercontent:{
     color: theme.palette.text.secondary,
+    'text-align': 'center',
   },
   logo: {
     color: theme.palette.text.secondary,
@@ -54,23 +55,18 @@ const useStyle = makeStyles((theme) => ({
 export default function Header() {
   const classes = useStyle();
   return(
+
       <header class={classes.header}>
         <div class={classes.headercontent}>
-          <Grid container>
-          <Grid item xs={2}>
+        <div className={classes.root}>
+        <Grid container>
+          <Grid item xs={12} sm={3}>
           <div >
             <img class={classes.logo} src="images/logo-via-logohub.png" alt="My Portfolio Logo" />
           </div>
           </Grid>
-          <Grid item xs={4}>
-          </Grid>
-          <Grid item xs={6}>
+          <Grid item xs={12} sm={8}>
           <ul class={classes.mainmenuul}>
-            <li class={classes.mainmenuli}>
-              <a class={classes.link} href="#" >
-              About Me
-              </a>
-            </li>
             <li class={classes.mainmenuli}>
               <a class={classes.link} href="#">
               Portfolio
@@ -88,8 +84,8 @@ export default function Header() {
             </li>
           </ul>
           </Grid>
-
-          </Grid>
+        </Grid>
+        </div>
         </div>
       </header>
   );

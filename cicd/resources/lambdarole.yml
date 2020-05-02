@@ -1,0 +1,25 @@
+- Effect: "Allow"
+  Action:
+    - "codepipeline:PutJobSuccessResult"
+    - "codepipeline:PutJobFailureResult"
+  Resource:
+    - "*"
+- Effect: "Allow"
+  Action:
+    - "s3:GetObject"
+  Resource:
+    - Fn::Join:
+      - ''
+      -
+        - !GetAtt Artifacts.Arn
+        - '/*'
+- Effect: "Allow"
+  Action:
+    - "s3:PutObject"
+    - "s3:PutObjectAcl"
+  Resource:
+    - Fn::Join:
+      - ''
+      -
+        - !GetAtt PortfolioSite.Arn
+        - '/*'

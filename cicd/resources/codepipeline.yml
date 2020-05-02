@@ -1,0 +1,59 @@
+Type: AWS::CodePipeline::Pipeline
+Properties:
+  Name: ankitportfoliopipeline
+  ArtifactStore:
+    Location: !Ref Artifacts
+    Type: S3
+  RoleArn: !GetAtt PipelineRole.Arn
+  Stages:
+    -
+      Name: Source
+      Actions:
+        -
+            Name: GitHubSource
+            Namespace: SourceVariables
+            ActionTypeId:
+              Category: Source
+              Owner: ThirdParty
+              Provider: GitHub
+              Version: "1"
+            Configuration:
+              Owner: ${self:custom.Owner}
+              OAuthToken:  ${self:custom.OAuthToken}
+              Repo: ${self:custom.Repo}
+              Branch: ${self:custom.Branch}
+              PollForSourceChanges: false
+            OutputArtifacts:
+              - Name: SourceArtifact
+    -
+      Name: Build
+      Actions:
+          -
+            Name: Build
+            Namespace: BuildVariables
+            ActionTypeId:
+               Category: Build
+               Owner: AWS
+               Provider: CodeBuild
+               Version: "1"
+            Configuration:
+               ProjectName: !Ref BuildProject
+            InputArtifacts:
+               - Name: SourceArtifact
+            OutputArtifacts:
+               - Name: BuildArtifact
+    -
+      Name: Deploy
+      Actions:
+          -
+            Name: Deploy
+            ActionTypeId:
+              Category: Invoke
+              Owner: AWS
+              Provider: Lambda
+              Version: '1'
+            InputArtifacts:
+               - Name: BuildArtifact
+            OutputArtifacts: []
+            Configuration:
+              FunctionName: ${self:service}-${self:custom.stage}-PortfolioDeployer

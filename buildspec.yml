@@ -9,4 +9,5 @@ artifacts:
   files:
     - index.html
     - images/*
+    - css/*
     - dist/bundle.js

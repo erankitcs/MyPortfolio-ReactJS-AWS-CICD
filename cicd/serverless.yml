@@ -1,0 +1,36 @@
+service: portfoliocicd
+provider:
+  name: aws
+  region: us-east-1
+  runtime: python3.8
+  profile: pythonAutomation
+  environment:
+    PORTFOLIO_BUCKET: ${self:custom.bucketName}
+  iamRoleStatements: ${file(resources/lambdarole.yml)}
+functions:
+  PortfolioDeployer:
+    handler: handler.portfolio_deployer
+
+custom:
+  stage: ${opt:stage, self:provider.stage}
+  domainName: ${file(resources/config.${self:custom.stage}.yml):PortfolioConfig.domainName}
+  rootDomainName: ${file(resources/config.${self:custom.stage}.yml):PortfolioConfig.rootDomainName}
+  bucketName: ${file(resources/config.${self:custom.stage}.yml):PortfolioConfig.bucketName}
+  Owner: ${file(resources/config.${self:custom.stage}.yml):PortfolioConfig.Owner}
+  OAuthToken:  ${file(resources/config.${self:custom.stage}.yml):PortfolioConfig.OAuthToken}
+  Repo: ${file(resources/config.${self:custom.stage}.yml):PortfolioConfig.Repo}
+  Branch: ${file(resources/config.${self:custom.stage}.yml):PortfolioConfig.Branch}
+resources:
+  Mappings: ${file(resources/mappings.yml)}
+  Resources:
+    PortfolioSite: ${file(resources/portfoliosite.yml)}
+    SSLCert: ${file(resources/ssl.yml)}
+    DnsRecords: ${file(resources/dns.yml)}
+    CDN: ${file(resources/cdn.yml)}
+    Artifacts: ${file(resources/artifacts.yml)}
+    CodeBuildPolicy: ${file(resources/codebuildpolicy.yml)}
+    BuildProjectRole: ${file(resources/codebuildrole.yml)}
+    PipelineRole: ${file(resources/codepipelinerole.yml)}
+    BuildProject: ${file(resources/codebuildproject.yml)}
+    CodeBuildLogGroup: ${file(resources/codebuildloggroup.yml)}
+    Pipeline: ${file(resources/codepipeline.yml)}

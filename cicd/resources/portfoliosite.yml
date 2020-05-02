@@ -1,0 +1,6 @@
+Type: AWS::S3::Bucket
+Properties:
+  AccessControl: PublicRead
+  BucketName: ${self:custom.bucketName}
+  WebsiteConfiguration:
+    IndexDocument: index.html

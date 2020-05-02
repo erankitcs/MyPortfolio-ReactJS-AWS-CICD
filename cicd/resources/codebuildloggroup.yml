@@ -1,0 +1,4 @@
+Type: AWS::Logs::LogGroup
+Properties:
+  LogGroupName: /aws/codebuild/ankitportfoliobuild
+  RetentionInDays: 7

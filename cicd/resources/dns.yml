@@ -1,0 +1,15 @@
+Type: "AWS::Route53::RecordSetGroup"
+Properties:
+  HostedZoneName: "${self:custom.rootDomainName}."
+  Comment: "DNS records associated with Ankit Portfolio website."
+  RecordSets:
+    - Name: ${self:custom.domainName}
+      Type: A
+      AliasTarget:
+        DNSName: {"Fn::GetAtt": CDN.DomainName}
+        HostedZoneId: Z2FDTNDATAQYW2
+    - Name: ${self:custom.domainName}
+      Type: AAAA
+      AliasTarget:
+        DNSName: {"Fn::GetAtt": CDN.DomainName}
+        HostedZoneId: Z2FDTNDATAQYW2

@@ -1,0 +1,7 @@
+Properties:
+  BucketName: ankitportfolioartifactsbucket
+  LifecycleConfiguration:
+    Rules:
+      - ExpirationInDays: 30
+        Status: Enabled
+Type: AWS::S3::Bucket

@@ -1,0 +1,36 @@
+Type: AWS::IAM::Policy
+Properties:
+  PolicyName: "ankitportfolio-codebuild-access"
+  Roles:
+    - !Ref BuildProjectRole
+  PolicyDocument:
+    Version: '2012-10-17'
+    Statement:
+      - Action:
+          - logs:CreateLogGroup
+          - logs:CreateLogStream
+          - logs:PutLogEvents
+        Effect: Allow
+        Resource:
+          #- "arn:aws:logs:us-east-1:637555073356:log-group:/aws/codebuild/*"
+          - !GetAtt CodeBuildLogGroup.Arn
+      - Action:
+          - s3:PutObject
+          - s3:GetObject
+          - s3:GetObjectVersion
+        Effect: Allow
+        Resource:
+          - Fn::Join:
+              - ""
+              -
+                - !GetAtt Artifacts.Arn
+                - "/*"
+      - Action:
+          - s3:ListBucket
+        Effect: Allow
+        Resource:
+          - Fn::Join:
+              - ""
+              -
+                  - !GetAtt BuildProject.Arn
+                  - "/*"
