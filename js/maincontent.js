@@ -13,8 +13,8 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
   },
   large: {
-    width: theme.spacing(36),
-    height: theme.spacing(36),
+    width: theme.spacing(32),
+    height: theme.spacing(32),
   },
   infotext:{
     'margin-top': theme.spacing(5),
