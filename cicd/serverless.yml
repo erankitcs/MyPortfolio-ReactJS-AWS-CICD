@@ -6,7 +6,32 @@ provider:
   profile: pythonAutomation
   environment:
     PORTFOLIO_BUCKET: ${self:custom.bucketName}
-  iamRoleStatements: ${file(resources/lambdarole.yml)}
+  iamRoleStatements:
+    - Effect: "Allow"
+      Action:
+        - "codepipeline:PutJobSuccessResult"
+        - "codepipeline:PutJobFailureResult"
+      Resource:
+        - "*"
+    - Effect: "Allow"
+      Action:
+        - "s3:GetObject"
+      Resource:
+        - Fn::Join:
+          - ''
+          -
+            - !GetAtt Artifacts.Arn
+            - '/*'
+    - Effect: "Allow"
+      Action:
+        - "s3:PutObject"
+        - "s3:PutObjectAcl"
+      Resource:
+        - Fn::Join:
+          - ''
+          -
+            - !GetAtt PortfolioSite.Arn
+            - '/*'
 functions:
   PortfolioDeployer:
     handler: handler.portfolio_deployer

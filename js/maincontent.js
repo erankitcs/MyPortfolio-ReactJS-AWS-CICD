@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
 	  //'opacity': .85
   },
   maincontent:{
-    margin: theme.spacing(2),
+    //margin: theme.spacing(2),
     'font-size': '16px',
   },
   h4:{

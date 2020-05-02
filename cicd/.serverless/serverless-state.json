@@ -230,7 +230,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/portfoliocicd/dev/1588409075165-2020-05-02T08:44:35.165Z/portfoliocicd.zip"
+                "S3Key": "serverless/portfoliocicd/dev/1588427504872-2020-05-02T13:51:44.872Z/portfoliocicd.zip"
               },
               "FunctionName": "portfoliocicd-dev-PortfolioDeployer",
               "Handler": "handler.portfolio_deployer",
@@ -254,14 +254,14 @@
               "IamRoleLambdaExecution"
             ]
           },
-          "PortfolioDeployerLambdaVersionyOdQEF7Aeq8EevfCHe0UAsnM7welnLjMa0DdGJV7XlQ": {
+          "PortfolioDeployerLambdaVersionWh0ElRJO5FFv54QYuKjTML0zOnsYw53MRKpuZL2eQ": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "PortfolioDeployerLambdaFunction"
               },
-              "CodeSha256": "yxb9/S60Yox1ynBeeQeJvfGm5uNsjoArYr42ut3VUn0="
+              "CodeSha256": "sdKVLZrxP9/YjhwFKSR6rry6srT6skH+b4UlH1ZhFyA="
             }
           },
           "PortfolioSite": {
@@ -737,7 +737,7 @@
           "PortfolioDeployerLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "PortfolioDeployerLambdaVersionyOdQEF7Aeq8EevfCHe0UAsnM7welnLjMa0DdGJV7XlQ"
+              "Ref": "PortfolioDeployerLambdaVersionWh0ElRJO5FFv54QYuKjTML0zOnsYw53MRKpuZL2eQ"
             }
           }
         },
@@ -884,7 +884,7 @@
         "timeout": 6,
         "runtime": "python3.8",
         "vpc": {},
-        "versionLogicalId": "PortfolioDeployerLambdaVersionyOdQEF7Aeq8EevfCHe0UAsnM7welnLjMa0DdGJV7XlQ"
+        "versionLogicalId": "PortfolioDeployerLambdaVersionWh0ElRJO5FFv54QYuKjTML0zOnsYw53MRKpuZL2eQ"
       }
     },
     "resources": {
@@ -1413,7 +1413,7 @@
     "artifact": "D:\\Tech\\AWS-Serverless\\MyPortfolio-ReactJS-AWS-CICD\\cicd\\.serverless\\portfoliocicd.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/portfoliocicd/dev/1588409075165-2020-05-02T08:44:35.165Z",
+    "artifactDirectoryName": "serverless/portfoliocicd/dev/1588427504872-2020-05-02T13:51:44.872Z",
     "artifact": "portfoliocicd.zip"
   }
 }
