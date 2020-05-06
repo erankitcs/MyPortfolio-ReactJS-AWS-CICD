@@ -59,3 +59,4 @@ resources:
     BuildProject: ${file(resources/codebuildproject.yml)}
     CodeBuildLogGroup: ${file(resources/codebuildloggroup.yml)}
     Pipeline: ${file(resources/codepipeline.yml)}
+    GitHubWebhook: ${file(resources/webhookgithub.yml)}

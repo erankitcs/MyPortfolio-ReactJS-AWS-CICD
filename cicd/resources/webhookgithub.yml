@@ -1,0 +1,12 @@
+Type: 'AWS::CodePipeline::Webhook'
+Properties:
+      AuthenticationConfiguration:
+        SecretToken: ${self:custom.OAuthToken}
+      Filters:
+        - JsonPath: "$.ref"
+          MatchEquals: refs/heads/{Branch}
+      Authentication: GITHUB_HMAC
+      TargetPipeline: !Ref Pipeline
+      TargetAction: GitHubSource
+      TargetPipelineVersion: !GetAtt Pipeline.Version
+      RegisterWithThirdParty: true

@@ -17,3 +17,12 @@ npm install --save material-ui@0.19.4/core
 npm install --save @material-ui/core
 
 npm install --save @material-ui/icons
+
+npm install --save-dev babel-jest enzyme jest babel-preset-env enzyme-adapter-react react-test-renderer
+
+//For Jest
+npm install @babel/core --save-dev
+npm install @babel/preset-env --save-dev
+npm install @babel/preset-react --save-dev
+//webpack was failing.
+npm install babel-core@^7.0.0-bridge.0 --save-dev
